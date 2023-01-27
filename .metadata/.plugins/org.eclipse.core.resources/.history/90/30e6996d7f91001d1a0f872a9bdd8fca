@@ -1,0 +1,15 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class ProductDetailPage {
+	
+	private WebDriver driver;
+	private By itemName = By.xpath("//div[@id='LeftSummaryPanel']//h1//span");
+	
+	public ProductDetailPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+}

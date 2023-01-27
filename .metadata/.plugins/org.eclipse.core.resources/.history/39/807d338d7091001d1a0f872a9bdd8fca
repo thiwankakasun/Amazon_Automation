@@ -1,0 +1,25 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class GoogleHomePage {
+	
+	private WebDriver driver;	
+	private By searchField = By.xpath("//input[@title='Search']");
+	
+	public GoogleHomePage(WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	public SearchResultPage searchforEbay() {
+		WebElement search = driver.findElement(searchField);
+		search.sendKeys("Ebay");
+		search.sendKeys(Keys.ENTER);
+		
+		return new SearchResultPage(driver);
+	}
+
+}

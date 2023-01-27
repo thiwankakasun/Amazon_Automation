@@ -1,0 +1,25 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class GoogleSearchResultPage {
+
+	private WebDriver driver;
+	private By searchResultLink = By
+			.xpath("//h3[normalize-space(text())='eBay: Electronics, Cars, Fashion, Collectibles & More']");
+	
+	public GoogleSearchResultPage(WebDriver driver) {
+		
+		this.driver = driver;
+	}
+	
+	public EbayHomePage clickEbayLink() {
+		
+		driver.findElement(searchResultLink).click();
+		
+		return new EbayHomePage(driver);
+		
+	}
+
+}

@@ -1,0 +1,26 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class EbayPasswordPage {
+	
+	private WebDriver driver;
+	private By password = By.id("pass");
+	private By signInButton = By.id("sgnBt");
+	
+	public EbayPasswordPage(WebDriver driver) {
+		
+		this.driver = driver;
+		
+	}
+	
+	public EbayHomePage SignIn(String Password) {
+		driver.findElement(password).sendKeys(Password);
+		driver.findElement(signInButton).click();
+		
+		return new EbayHomePage;
+	}
+	
+
+}

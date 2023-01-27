@@ -1,0 +1,19 @@
+package Tests;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class BaseTest {
+	
+	private WebDriver driver;
+	
+	public void setUp() {
+		
+		//Set the drivers and launch the browser
+		System.setProperty("webdriver.chrome.driver", "Resources/chromedriver.exe");
+		driver = new ChromeDriver();
+		
+	}
+
+}

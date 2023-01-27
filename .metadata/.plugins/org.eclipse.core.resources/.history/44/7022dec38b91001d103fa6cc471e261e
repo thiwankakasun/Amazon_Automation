@@ -1,0 +1,33 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class EbayHomePage {
+	
+	private WebDriver driver;
+	private By welcomeMsg = By.id("gh-ug");
+	private By searchField = By.id("gh-ac");
+	private By searchButton = By.id("gh-btn");
+	
+	public EbayHomePage(WebDriver driver) {
+		
+		this.driver = driver;
+	}
+	
+	public String getWelcomeMsg() throws InterruptedException {
+		 Thread.sleep(2000);
+		 return driver.findElement(welcomeMsg).getText();
+		 
+	}
+	
+	public GoogleSearchResultPage searchItem(String item) {
+		
+		driver.findElement(searchField).sendKeys(item);
+		driver.findElement(searchButton).click();
+		
+		return new GoogleSearchResultPage(driver);
+	}
+	
+
+}

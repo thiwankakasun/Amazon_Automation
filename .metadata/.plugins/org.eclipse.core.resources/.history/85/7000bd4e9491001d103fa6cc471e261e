@@ -1,0 +1,56 @@
+package Tests;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import PageObjects.EbayHomePage;
+import PageObjects.EbayLoginPage;
+import PageObjects.EbayPasswordPage;
+import PageObjects.EbaySignOutHomePage;
+import PageObjects.GoogleSearchResultPage;
+import PageObjects.ProductDetailPage;
+import PageObjects.SearchResultPage;
+import PageObjects.ShoppingCartPage;
+
+public class EbayTest extends BaseTest {
+
+	@Test
+	public void purchaseItemFromEbay() throws Exception {
+
+		String userName = "vilasha94wedage@gmail.com";
+		String password = "1qaz!QAZ";
+		String searchString = "Smartwatch";
+
+		//3. Search for “eBay”
+		GoogleSearchResultPage googleSearchResultPage = googleHomePage.searchforEbay();
+
+		//4. Click on the appropriate result from the Google search result and navigate to the eBay Home page
+		EbaySignOutHomePage ebaySignOutHomePage = googleSearchResultPage.clickEbayLink();
+
+		//5. Sign In with eBay using a Username/Email and Password
+		EbayLoginPage ebayLoginPage = ebaySignOutHomePage.clickSignInButton();
+
+		EbayPasswordPage ebayPasswordPage = ebayLoginPage.enterUserName(userName);
+
+		EbayHomePage ebayHomePage = ebayPasswordPage.SignIn(password);
+
+		//6. Verify that you signed in successfully with eBay
+		Assert.assertEquals(ebayHomePage.getWelcomeMsg(), "Hi Vilasha!", "Welcome message not display");
+
+		//7. Search for any item (Ex: Smartwatch)
+		SearchResultPage searchResultPage = ebayHomePage.searchItem(searchString);
+
+		//8. Navigate into the item by select the first item from the search result
+		ProductDetailPage productDetailPage = searchResultPage.selectItem();
+		
+		String itemNameInDetailPage = productDetailPage.getItemName();
+		
+		//9. Select any of the option and add the item to your cart
+		ShoppingCartPage shoppingCartPage = productDetailPage.addToCart();
+
+		//10. Verify the added item in your Shopping Cart
+		Assert.assertEquals(shoppingCartPage.getItemNameInShoppingCart(), itemNameInDetailPage,
+				"Selected item not match with the item in shopping cart");
+
+	}
+
+}

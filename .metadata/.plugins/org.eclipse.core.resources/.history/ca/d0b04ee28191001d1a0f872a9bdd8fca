@@ -1,0 +1,18 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class ProductDetailPage {
+	
+	private WebDriver driver;
+	private By itemName = By.xpath("//div[@id='LeftSummaryPanel']//h1//span");
+	private By colorDropdown = By.xpath("//select[contains(@id,'x-msku__select-box')]");
+	private By AddToCartButton = By.xpath("//span[contains(text(),'Add to cart')]");
+	
+	
+	public ProductDetailPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+}

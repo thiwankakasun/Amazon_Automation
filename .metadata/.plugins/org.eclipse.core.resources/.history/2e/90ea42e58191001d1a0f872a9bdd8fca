@@ -1,0 +1,15 @@
+package PageObjects;
+
+import org.openqa.selenium.WebDriver;
+
+public class EbayHomePage {
+	
+	private WebDriver driver;
+	
+	public EbayHomePage(WebDriver driver) {
+		
+		this.driver = driver;
+	}
+	
+
+}

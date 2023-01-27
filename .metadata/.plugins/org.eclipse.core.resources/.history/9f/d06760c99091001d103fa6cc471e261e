@@ -1,0 +1,50 @@
+package Tests;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import PageObjects.EbayHomePage;
+import PageObjects.EbayLoginPage;
+import PageObjects.EbayPasswordPage;
+import PageObjects.EbaySignOutHomePage;
+import PageObjects.GoogleSearchResultPage;
+import PageObjects.ProductDetailPage;
+import PageObjects.SearchResultPage;
+import PageObjects.ShoppingCartPage;
+
+public class EbayTest extends BaseTest {
+
+	@Test
+	public void purchaseItemFromEbay() throws Exception {
+
+		String userName = "vilasha94wedage@gmail.com";
+		String password = "1qaz!QAZ";
+		String searchString = "Smartwatch";
+
+		GoogleSearchResultPage googleSearchResultPage = googleHomePage.searchforEbay();
+
+		EbaySignOutHomePage ebaySignOutHomePage = googleSearchResultPage.clickEbayLink();
+
+		EbayLoginPage ebayLoginPage = ebaySignOutHomePage.clickSignInButton();
+
+		EbayPasswordPage ebayPasswordPage = ebayLoginPage.enterUserName(userName);
+
+		EbayHomePage ebayHomePage = ebayPasswordPage.SignIn(password);
+
+		Assert.assertEquals(ebayHomePage.getWelcomeMsg(), "Hi Vilasha!", "Welcome message not display");
+
+		SearchResultPage searchResultPage = ebayHomePage.searchItem(searchString);
+
+		ProductDetailPage productDetailPage = searchResultPage.selectItem();
+
+		if (productDetailPage.isColorDropdownAvailable()) {
+			productDetailPage.selectColor();
+		}
+
+		ShoppingCartPage shoppingCartPage = productDetailPage.addToCart();
+
+		Assert.assertEquals(shoppingCartPage.getItemNameInShoppingCart(), productDetailPage.getItemName(),
+				"Selected item not match with the item in shopping cart");
+
+	}
+
+}

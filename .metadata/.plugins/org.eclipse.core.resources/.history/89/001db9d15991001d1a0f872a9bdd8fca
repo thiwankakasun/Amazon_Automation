@@ -1,0 +1,24 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class EbayHomePage {
+	
+	private WebDriver driver;
+	private By signin_btn = By.xpath("//span[@id='gh-ug']//a[normalize-space(text())='Sign in']");
+	
+	public EbayHomePage(WebDriver driver) {
+		
+		this.driver = driver;
+		
+	}
+	
+	public EbayLoginPage clickSignInButton() {
+		
+		driver.findElement(signin_btn).click();
+		
+		return new EbayLoginPage;
+	}
+
+}

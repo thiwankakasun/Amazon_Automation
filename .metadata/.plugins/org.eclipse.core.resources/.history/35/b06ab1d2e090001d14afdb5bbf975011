@@ -1,0 +1,18 @@
+package Tests;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.session.ChromeFilter;
+
+public class BaseTest {
+	
+	public WebDriver driver;
+	
+	public void setUp() {
+		
+		//Set the drivers and launch the browser
+		System.setProperty("webdriver.chrome.driver", "Resources/chromedriver.exe");
+		driver = new ChromeDriver();
+		
+	}
+
+}

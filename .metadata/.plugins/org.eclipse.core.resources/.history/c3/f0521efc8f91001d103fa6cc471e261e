@@ -1,0 +1,28 @@
+package PageObjects;
+
+import java.util.ArrayList;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class SearchResultPage {
+	
+	private WebDriver driver;
+	private By searchItem = By.xpath("(//div[@id='srp-river-results']//div[@class='s-item__title'])[1]");
+	
+	
+	public SearchResultPage(WebDriver driver) {
+		
+		this.driver = driver;
+		
+	}
+	
+	public ProductDetailPage selectItem() {
+		
+		driver.findElement(searchItem).click();
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	    return new ProductDetailPage(driver);
+	}
+
+}

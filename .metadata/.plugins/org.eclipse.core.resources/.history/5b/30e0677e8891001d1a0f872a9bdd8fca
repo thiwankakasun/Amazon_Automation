@@ -1,0 +1,29 @@
+package Tests;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import PageObjects.EbayHomePage;
+import PageObjects.EbayLoginPage;
+import PageObjects.EbayPasswordPage;
+import PageObjects.EbaySignOutHomePage;
+import PageObjects.GoogleSearchResultPage;
+
+public class EbayTest extends BaseTest {
+
+	@Test(priority = 1)
+	public void navigateToEbay() {
+		
+		String UserName = "vilasha94wedage@gmail.com";
+		String Password = "1qaz!QAZ"
+				
+		
+		GoogleSearchResultPage googleSearchResultPage =   googleHomePage.searchforEbay();
+		EbaySignOutHomePage ebaySignOutHomePage = googleSearchResultPage.clickEbayLink();
+		EbayLoginPage ebayLoginPage = ebaySignOutHomePage.clickSignInButton();
+		EbayPasswordPage ebayPasswordPage = ebayLoginPage.enterUserName(UserName);
+		EbayHomePage ebayHomePage = ebayPasswordPage.SignIn(Password);
+		Assert.assertEquals(ebayHomePage.getWelcomeMsg(), "Hi Vilasha","Welcome message not display");
+		
+	}
+}
